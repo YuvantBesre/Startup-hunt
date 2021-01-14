@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends 'partial.html' %}
+
+{% block content %}
+
+<h1 class="text-center"> Add a Startup :  </h1>
+
+{% if error %}
+
+<div class="container bg-danger text-center rounded">
+    {{ error }}
+</div>
+
+{% endif %}
+
+<div class="container text-center">
+
+    <form action="{% url 'create' %}" method="POST" enctype="multipart/form-data" style="margin-top: 30px;">
+
+        {% csrf_token %}
+    
+        <label class="m-2" for="">Title :</label>
+        <br>
+        <input class="text-center" name="title" type="text" placeholder="Title"  style="width: 608px; height: 50px">
+        <br>
+        <br>
+        <label class="m-2" for="">Content :</label>
+        <br>
+        <textarea class="text-center" name="content" id="" cols="100" rows="10" placeholder="Write your body here.."></textarea>
+        <br>
+        <br>
+        <label class="m-2" for="">URL :</label>
+        <br>
+        <input class="text-center" name="url" type="text" placeholder="Eg: https://xyz.com" style=" width: 608px; height: 50px">
+        <br>
+        <br>
+        <label class="m-2" for="">Icon :</label>
+        <br>
+        <input class="pt-106 pl-22" name="icon" type="file" placeholder="Icon" style=" padding-top: 16px; padding-left: 76px;">
+        <br>
+        <br>
+        <label class="m-2" for="">Image :</label>
+        <br>
+        <input class="pt-106 pl-22" name="image" type="file" placeholder="Image" style=" padding-top: 16px; padding-left: 76px;">
+        <br>
+        <br>
+        <button type="submit" class="btn btn-danger btn-lg mt-4">Create Post</button>
+    </form>
+
+</div>
+
+{% endblock %}

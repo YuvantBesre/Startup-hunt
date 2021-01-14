@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+{% extends 'partial.html' %}
+
+{% block content %}
+
+<h4 class="text-muted text-center"> Artcle published : {{ company.publication_date }}</h4>
+
+<div class="container text-center border border-dark rounded mt-4" style="width: 500px;">
+
+  <img src="{{ company.Icon.url }}" height="90" alt="" >
+</div>
+
+<div class="container text-center">
+  <a style="color: black;" href="{{ company.url }}" target="_blank"><h1>{{ company.title }} - Website </h1></a>
+  <a href="javascript:{document.getElementById('upvote').submit()}"><button class="btn btn-primary btn-lg btn-block"> ^ Upvote {{ company.Votes }}</button></a>
+</div>
+
+<div class="container text-left">
+    <p class="text-left" style="margin-top : 25px;">{{ company.content }}</p>
+</div>
+
+<div class="container text-center">
+  <img src="{{ company.Image.url }}" height="200" class="img-fluid" />
+
+  <h4> Hunted by {{ company.hunter.username }}</h4>
+</div>
+      
+  <form id="upvote" method="POST" action="{% url 'upvote' company.id %}">
+    {% csrf_token%}
+    <input type="hidden">
+  </form>
+
+{% endblock %}

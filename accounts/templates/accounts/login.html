@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends 'partial.html' %}
+
+{% block content %}
+
+{% if error %}
+
+<div class="container bg-danger text-center rounded">
+    {{ error }}
+</div>
+
+{% endif %}
+
+<div class="container text-center">
+
+    <form action="{% url 'login' %}" method="POST" style="margin-top: 80px;">
+
+        {% csrf_token %}
+    
+        <label for="user">Username : </label>
+        <br>
+        <input type="text" name="username" id="user" placeholder="Username" class="text-center">
+        <br>
+        <br>
+        <label for="password">Password : </label>
+        <br>
+        <input type="password" name="password" id="password" placeholder="Password" class="text-center">
+        <br>
+        <br>
+    
+        <button type="submit" class="btn btn-danger btn-lg mt-4">Log in</button>
+    </form>
+
+</div>
+
+
+
+{% endblock %}

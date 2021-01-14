@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends 'partial.html' %}
+
+{% block content %}
+
+{% for company in AllCompanies.all %}
+
+<div class="container text-left border border-dark rounded mt-4" style="width: 726px; margin-left: 10px;">
+    <img  src="{{ company.Icon.url }}" height="90"/>
+        <a href="javascript:{document.getElementById('upvote{{ company.id }}').submit()}"><button
+                class="btn btn-primary btn-lg btn-block" style="margin-left: 50px; margin-bottom: 10px;"> ^ Upvote {{ company.Votes }}</button></a>
+
+                <a style="color: black; margin-left: 100px;" href="{{ company.url }}" target="_blank"><h3 style="display: inline;">{{ company.title }} - Website</h3></a>
+</div>
+
+
+
+
+<div class="container mt-4">
+    <p>{{ company.SummaryOfContent }}...<a href="{% url 'FullProductPage' company.id %}">Read more</a></p>
+</div>
+
+<form id="upvote{{ company.id }}" method="POST" action="{% url 'upvoteAtHome' company.id %}">
+    {% csrf_token%}
+    <input type="hidden">
+</form>
+
+<hr>
+{% endfor %}
+
+{% endblock %}
